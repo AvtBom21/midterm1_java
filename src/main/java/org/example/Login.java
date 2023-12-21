@@ -24,6 +24,10 @@ public class Login {
 
 
     public Login(){
+        HibernateUtils hibernateUtils = new HibernateUtils();
+        accountDAO = new AccountDAO(hibernateUtils.getSession());
+        historyAccountDAO = new HistoryAccountDAO(hibernateUtils.getSession());
+
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
 
@@ -132,9 +136,6 @@ public class Login {
     public void showForm(){frame.setVisible(true);}
     public void closeForm(){frame.setVisible(false);}
     public static void main(String[] args) {
-        HibernateUtils hibernateUtils = new HibernateUtils();
-        accountDAO = new AccountDAO(hibernateUtils.getSession());
-        historyAccountDAO = new HistoryAccountDAO(hibernateUtils.getSession());
         new Login();
     }
 }

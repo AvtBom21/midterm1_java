@@ -68,10 +68,15 @@ public class AccountDAO {
         Transaction transaction = session.beginTransaction();
 
         try {
+            // Xóa tất cả các HistoryAccount liên quan
+            for (HistoryAccount historyAccount : item.getHistoryAccount()) {
+                session.remove(historyAccount);
+            }
 
+            // Xóa Account
             session.remove(item);
-            transaction.commit();
 
+            transaction.commit();
             return true;
         } catch (Exception e) {
             transaction.rollback();
@@ -79,6 +84,7 @@ public class AccountDAO {
             return false;
         }
     }
+
     public boolean update(Account item) {
         Transaction transaction = session.beginTransaction();
 

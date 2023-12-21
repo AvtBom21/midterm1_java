@@ -338,15 +338,16 @@ public class Main {
                         }
                         accounttable.setId(dao.get(accounttable.getPhone()).getId());
                         dao.update(accounttable);
-                        JOptionPane.showMessageDialog(null, "update Clicked: " + accounttable);
+                        JOptionPane.showMessageDialog(null, "update success: ");
                         fireEditingStopped();
                         SwingUtilities.invokeLater(() -> {
                             updateTableData();
                         });
                     }else if ("delete".equals(value)){
                         Object key = table.getValueAt(row, column - 4);
+
                         dao.remove(dao.get((String) key));
-                        JOptionPane.showMessageDialog(null, "delete Clicked: " + key);
+                        JOptionPane.showMessageDialog(null, "delete Success ");
 
                         fireEditingStopped();
                         SwingUtilities.invokeLater(() -> {
